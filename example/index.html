@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>Webdav client example</title>
+  <script src='../node_modules/babel/browser-polyfill.js'></script>
+  <script src='../dist/webdav-client.js'></script>
+</head>
+<body>
+
+<script>
+  var client = new WebdavClient({
+    url: 'http://127.0.0.1:8000/'
+  });
+  client.propfind()
+  .then(function(nodeIterator) {
+    for (var node of nodeIterator) {
+      console.log(node);
+    }
+  })
+  .catch(function(reason) {
+    console.log(reason);
+  });
+</script>
+
+</body>
+</html>

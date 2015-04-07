@@ -1,0 +1,7 @@
+{
+  "destinationFolder": "dist",
+  "exportFileName": "webdav-client",
+  "entryFileName": "webdav-client",
+  "exportVarName": "WebdavClient",
+  "mochaGlobals": ["stub", "spy", "expect"]
+}

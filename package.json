@@ -1,6 +1,6 @@
 {
   "name": "webdav-client",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Webdav client",
   "main": "dist/webdav-client.js",
   "scripts": {

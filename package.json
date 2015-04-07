@@ -46,5 +46,13 @@
     "sinon": "^1.12.2",
     "sinon-chai": "^2.6.0",
     "vinyl-source-stream": "^1.0.0"
-  }
+  },
+  "pre-commit": [
+    "jshint",
+    "codestyle",
+    "mocked",
+    "test",
+    "checkcoverage"
+  ]
 }
+

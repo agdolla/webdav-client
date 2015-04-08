@@ -15,7 +15,6 @@ const source = require('vinyl-source-stream');
 const config = require('./config');
 
 var onError = function(err) {
-  $.util.beep();
   if (process.env.CI) {
     throw new Error(err);
   };

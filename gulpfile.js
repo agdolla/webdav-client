@@ -14,6 +14,13 @@ const source = require('vinyl-source-stream');
 // Adjust this file to configure the build
 const config = require('./config');
 
+var onError = function(err) {
+  $.util.beep();
+  if (process.env.CI) {
+    throw new Error(err);
+  };
+}
+
 // Remove the built files
 gulp.task('clean', function(cb) {
   del([config.destinationFolder], cb);
@@ -114,7 +121,7 @@ gulp.task('browserify', ['compile_browser_script'], function() {
 
 gulp.task('coverage', function(done) {
   gulp.src(['src/*.js'])
-    .pipe($.plumber())
+    .pipe($.plumber({errorHandler: onError}))
     .pipe($.istanbul({ instrumenter: isparta.Instrumenter }))
     .pipe($.istanbul.hookRequire())
     .on('finish', function() {
@@ -126,7 +133,7 @@ gulp.task('coverage', function(done) {
 
 function test() {
   return gulp.src(['test/setup/node.js', 'test/unit/**/*.js'], {read: false})
-    .pipe($.plumber())
+    .pipe($.plumber({errorHandler: onError}))
     .pipe($.mocha({reporter: 'dot', globals: config.mochaGlobals}));
 };
 
